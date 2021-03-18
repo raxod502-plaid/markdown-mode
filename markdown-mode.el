@@ -3140,9 +3140,12 @@ the buffer)."
         (goto-char last)
         nil))))
 
+(defvar markdown-highlight-bare-metadata nil)
+
 (defun markdown-match-declarative-metadata (last)
   "Match declarative metadata from the point to LAST."
-  (markdown-match-generic-metadata markdown-regex-declarative-metadata last))
+  (when markdown-highlight-bare-metadata
+    (markdown-match-generic-metadata markdown-regex-declarative-metadata last)))
 
 (defun markdown-match-pandoc-metadata (last)
   "Match Pandoc metadata from the point to LAST."
